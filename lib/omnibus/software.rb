@@ -775,7 +775,8 @@ module Omnibus
         merge({ "PKG_CONFIG_PATH" => "#{install_dir}/embedded/lib/pkgconfig" }).
         # Set default values for CXXFLAGS and CPPFLAGS.
         merge("CXXFLAGS" => compiler_flags["CFLAGS"]).
-        merge("CPPFLAGS" => compiler_flags["CFLAGS"])
+        merge("CPPFLAGS" => compiler_flags["CFLAGS"]).
+        merge("OMNIBUS_INSTALL_DIR" => install_dir)
     end
     expose :with_standard_compiler_flags
 
