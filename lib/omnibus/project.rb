@@ -1220,6 +1220,10 @@ module Omnibus
       end
     end
 
+    def fips_enabled?
+      (overrides[:fips] && overrides[:fips][:enabled]) || false
+    end
+
     #
     # @!endgroup
     # --------------------------------------------------

@@ -413,5 +413,48 @@ module Omnibus
         end
       end
     end
+
+    describe "#fips_enabled?" do
+
+      before do
+        subject.overrides.clear
+      end
+
+      context "when overrides are not set" do
+        it "fips_enabled? returns false" do
+          expect(subject.fips_enabled?).to eq false
+        end
+      end
+
+      context "when only overrides[:fips] is set" do
+        before do
+          subject.override(:fips)
+        end
+
+        it "fips_enabled? returns false" do
+          expect(subject.fips_enabled?).to eq false
+        end
+      end
+
+      context "when override[:fips][:enabled] is set to false" do
+        before do
+          subject.override(:fips, enabled: false)
+        end
+
+        it "fips_enabled? returns false" do
+          expect(subject.fips_enabled?).to eq false
+        end
+      end
+
+      context "when override[:fips][:enabled] is set to true" do
+        before do
+          subject.override(:fips, enabled: true)
+        end
+
+        it "fips_enabled? returns true" do
+          expect(subject.fips_enabled?).to eq true
+        end
+      end
+    end
   end
 end
